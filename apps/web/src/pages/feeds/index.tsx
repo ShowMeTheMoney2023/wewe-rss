@@ -59,6 +59,10 @@ const Feeds = () => {
 
   const [currentMpId, setCurrentMpId] = useState(id || '');
   
+  const currentMpInfo = useMemo(() => {  
+    return feedData?.items.find((item) => item.id === currentMpId);
+  }, [currentMpId, feedData?.items]);
+
     useEffect(() => {
     const interval = setInterval(async () => {  
       if (currentMpInfo) {
@@ -102,9 +106,6 @@ const Feeds = () => {
     return currentMpId === key;
   };
 
-  const currentMpInfo = useMemo(() => {
-    return feedData?.items.find((item) => item.id === currentMpId);
-  }, [currentMpId, feedData?.items]);
 
   const handleExportOpml = async (ev) => {
     ev.preventDefault();
