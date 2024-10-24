@@ -27,7 +27,7 @@ export class FeedsController {
   async getFeeds(
     @Request() req: Req,
     @Response() res: Res,
-    @Query('limit', new DefaultValuePipe(30), ParseIntPipe) limit: number = 30,
+    @Query('limit', new DefaultValuePipe(100), ParseIntPipe) limit: number = 100,  
     @Query('mode') mode: string,
     @Query('title_include') title_include: string,
     @Query('title_exclude') title_exclude: string,
