@@ -31,7 +31,7 @@ export class FeedsService {
   ) {
     this.request = got.extend({
       retry: {
-        limit: 3,    
+        limit: 3,      
         methods: ['GET'],  
       },
       timeout: 8 * 1e3,
@@ -214,16 +214,16 @@ export class FeedsService {
   async handleGenerateFeed({
     id,
     type,
-    limit,
+    limit: 100,    
     mode,
-    title_include,
+    title_include,  
     title_exclude,
   }: {
     id?: string;
     type: string;
-    limit: number = 100;  
+    limit: number;      
     mode?: string;
-    title_include?: string;
+    title_include?: string;    
     title_exclude?: string;
   }) {
     if (!feedTypes.includes(type as any)) {
