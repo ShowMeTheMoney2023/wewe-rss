@@ -13,7 +13,7 @@ import { minify } from 'html-minifier';
 import { LRUCache } from 'lru-cache';
 import pMap from '@cjs-exporter/p-map';
 
-console.log('CRON_EXPRESSION: ', process.env.CRON_EXPRESSION);
+console.log('CRON_EXPRESSION: ', process.env.CRON_EXPRESSION);  
 
 const mpCache = new LRUCache<string, string>({
   max: 5000,
@@ -198,7 +198,7 @@ export class FeedsService {
         id,
         title,
         link: link,
-        guid: link,
+        guid: link,  
         content,
         date: published,
         image: picUrl,
@@ -214,16 +214,16 @@ export class FeedsService {
   async handleGenerateFeed({
     id,
     type,
-    limit,      
-    mode,
+    limit = 200,        
+    mode,  
     title_include,  
     title_exclude,
   }: {
     id?: string;
     type: string;
-    limit: number;      
+    limit?: number;        
     mode?: string;
-    title_include?: string;    
+    title_include?: string;      
     title_exclude?: string;
   }) {
     if (!feedTypes.includes(type as any)) {
@@ -244,16 +244,16 @@ export class FeedsService {
       articles = await this.prismaService.article.findMany({
         where: { mpId: id },
         orderBy: { publishTime: 'desc' },
-        take: 100,    
+        take: limit,      
       });
     } else {
       articles = await this.prismaService.article.findMany({
         orderBy: { publishTime: 'desc' },
-        take: 100,
+        take: limit,  
       });
 
       const { originUrl } =
-        this.configService.get<ConfigurationType['feed']>('feed')!;
+        this.configService.get<ConfigurationType['feed']>('feed')!;  
       feedInfo = {
         id: 'all',
         mpName: 'WeWe-RSS All',
