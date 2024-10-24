@@ -23,7 +23,7 @@ const ArticleList: FC = () => {
   const { data, fetchNextPage, isLoading, hasNextPage } =
     trpc.article.list.useInfiniteQuery(
       {
-        limit: 20,
+        limit: 100,
         mpId: mpId,
       },
       {
