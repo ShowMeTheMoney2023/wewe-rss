@@ -86,7 +86,7 @@ export class FeedsService {
         this.logger.error('handleUpdateFeedsCron error', err);
       } finally {
         // wait 30s for next feed
-        await new Promise((resolve) => setTimeout(resolve, 30 * 1e3));
+        await new Promise((resolve) => setTimeout(resolve, 60 * 1e3));      
       }
     }
   }
@@ -316,7 +316,7 @@ export class FeedsService {
       this.logger.error('updateFeed error', err);
     } finally {
       // wait 30s for next feed
-      await new Promise((resolve) => setTimeout(resolve, 30 * 1e3));
+      await new Promise((resolve) => setTimeout(resolve, 60 * 1e3));
     }
   }
 }
