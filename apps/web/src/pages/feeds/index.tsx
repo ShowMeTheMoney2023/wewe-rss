@@ -18,7 +18,7 @@ import {
 } from '@nextui-org/react';
 import { PlusIcon } from '@web/components/PlusIcon';
 import { trpc } from '@web/utils/trpc';
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';  
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'sonner';
 import dayjs from 'dayjs';
@@ -58,7 +58,19 @@ const Feeds = () => {
   const [wxsLink, setWxsLink] = useState('');
 
   const [currentMpId, setCurrentMpId] = useState(id || '');
+  
+    useEffect(() => {
+    const interval = setInterval(async () => {  
+      if (currentMpInfo) {
+        await refreshMpArticles({ mpId: currentMpInfo.id });  
+        await refetchFeedList();
+        await queryUtils.article.list.reset();
+      }
+    }, 4 * 60 * 60 * 1000); // 每4小时执行一次，单位为毫秒
 
+    return () => clearInterval(interval); // 清理定时器
+  }, [currentMpInfo]); // 依赖于 currentMpInfo
+  
   const handleConfirm = async () => {
     // TODO show operation in progress
     const res = await getMpInfo({ wxsLink: wxsLink });
