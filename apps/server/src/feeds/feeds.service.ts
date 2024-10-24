@@ -214,7 +214,7 @@ export class FeedsService {
   async handleGenerateFeed({
     id,
     type,
-    limit: 100,    
+    limit,      
     mode,
     title_include,  
     title_exclude,
@@ -244,12 +244,12 @@ export class FeedsService {
       articles = await this.prismaService.article.findMany({
         where: { mpId: id },
         orderBy: { publishTime: 'desc' },
-        take: limit,
+        take: 100,    
       });
     } else {
       articles = await this.prismaService.article.findMany({
         orderBy: { publishTime: 'desc' },
-        take: limit,
+        take: 100,
       });
 
       const { originUrl } =
