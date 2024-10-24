@@ -31,8 +31,8 @@ export class FeedsService {
   ) {
     this.request = got.extend({
       retry: {
-        limit: 3,
-        methods: ['GET'],
+        limit: 100,  
+        methods: ['GET'],  
       },
       timeout: 8 * 1e3,
       headers: {
