@@ -37,7 +37,7 @@ export class FeedsController {
 
     const { content, mimeType } = await this.feedsService.handleGenerateFeed({
       type,
-      limit,
+      limit = 100,  
       mode,
       title_include,
       title_exclude,
