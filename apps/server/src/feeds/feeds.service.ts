@@ -214,14 +214,14 @@ export class FeedsService {
   async handleGenerateFeed({
     id,
     type,  
-    limit = 60,          
+    limit,          
     mode,  
     title_include,  
     title_exclude,
   }: {
     id?: string;
     type: string;
-    limit?: number;        
+    limit: number;          
     mode?: string;
     title_include?: string;      
     title_exclude?: string;
