@@ -13,7 +13,7 @@ import { FeedsService } from './feeds.service';
 import { Response as Res, Request as Req } from 'express';
 
 @Controller('feeds')
-export class FeedsController {
+export class FeedsController {  
   private readonly logger = new Logger(this.constructor.name);
 
   constructor(private readonly feedsService: FeedsService) {}
@@ -37,7 +37,7 @@ export class FeedsController {
 
     const { content, mimeType } = await this.feedsService.handleGenerateFeed({
       type,
-      limit = 100,  
+      limit: 100,    
       mode,
       title_include,
       title_exclude,
